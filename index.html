@@ -1,48 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insituto Inicio</title>
+    <title>Instituto Técnico - Inicio</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <h1>Bienvenidos a nuestro Instituto</h1>
+    <!-- Navbar con efectos -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h2>🎓 Instituto Técnico</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">🏠 Inicio</a></li>
+                <li><a href="productos.html" class="nav-link">🛒 Productos</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <h2>Quiénes Somos</h2>
-    <p>Somos una institución dedicada a formar
-        profesionales técnicos de excelencia.
-    </p>
-    <h2>Misión</h2>
-    <p>Brindar educación de calidad con tecnología
-        moderna.
-    </p>
-    <h2>Visión</h2>
-    <p>Ser el instituto lider a nivel naional en el
-        2030.
-    </p>
+    <main class="container">
+        <!-- Hero con BOTÓN PRINCIPAL -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Bienvenidos a nuestro <span class="gradient-text">Instituto</span></h1>
+                <p class="hero-subtitle">Formamos profesionales técnicos de <strong>EXCELENCIA</strong></p>
+                <a href="productos.html" class="cta-button primary">🚀 Ver Nuestros Productos</a>
+                <a href="productos.html" class="cta-button secondary">Ver Cursos Disponibles</a>
+            </div>
+        </section>
 
-    <h2>Carreras Profesionales</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Carrera</th>
-                <th>Descripición</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Desarrollo Web Full Stack</td>
-                <td>Diseño y estrructuración de aplicaciones
-                    complejas y estables.
-                </td>
-            </tr>
-            <tr>
-                <td>Arquitectura de Sistemas</td>
-                <td>Creación de interfaces modernas y Backends
-                    robustos en PHP y Python
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <section class="about">
+            <h2>👥 Quiénes Somos</h2>
+            <p>Somos una institución dedicada a formar profesionales técnicos de excelencia con tecnología de vanguardia.</p>
+        </section>
+
+        <section class="mission">
+            <h2>🎯 Misión</h2>
+            <p>Brindar educación de calidad con tecnología moderna y metodologías innovadoras.</p>
+        </section>
+
+        <section class="vision">
+            <h2>🌟 Visión</h2>
+            <p>Ser el instituto líder a nivel nacional en el 2030.</p>
+        </section>
+
+        <!-- Sección Carreras con botón a productos -->
+        <section class="careers">
+            <h2>📚 Carreras Profesionales</h2>
+            <div class="table-container">
+                <table class="careers-table">
+                    <thead>
+                        <tr>
+                            <th>Carrera</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>💻 Desarrollo Web Full Stack</td>
+                            <td>Diseño y estructuración de aplicaciones complejas y estables.</td>
+                        </tr>
+                        <tr>
+                            <td>⚙️ Arquitectura de Sistemas</td>
+                            <td>Creación de interfaces modernas y Backends robustos en PHP y Python.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="careers-cta">
+                <a href="productos.html" class="cta-button primary large">🛍️ Inscribirte Ahora</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Instituto Técnico. Todos los derechos reservados. | <a href="productos.html">Ver Productos</a></p>
+    </footer>
 </body>
 </html>
