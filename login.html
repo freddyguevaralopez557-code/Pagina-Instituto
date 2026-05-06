@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login</title>
+
+<!-- ICONOS -->
+<script src="https://kit.fontawesome.com/c9f5871d83.js" crossorigin="anonymous"></script>
+
+<!-- CSS -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* FONDO */
+body {
+    height: 100vh;
+    background: url('/fondo/1.png') no-repeat center center/cover;
+}
+
+/* CAPA OSCURA + BLUR */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px);
+    background: rgba(0,0,0,0.4);
+    z-index: -1;
+}
+
+/* HEADER */
+.header {
+    position: fixed;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav a {
+    color: #fff;
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* CONTENIDO */
+.home {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TEXTO */
+.content {
+    width: 40%;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.content h2 {
+    font-size: 40px;
+}
+
+.icon {
+    margin-top: 20px;
+}
+
+.icon i {
+    margin-right: 15px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.icon i:hover {
+    transform: scale(1.2);
+    color: crimson;
+}
+
+/* LOGIN */
+.login {
+    width: 350px;
+    padding: 40px;
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 1.2s;
+}
+
+.login h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* INPUTS */
+.input {
+    position: relative;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+}
+
+.input input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    color: white;
+    outline: none;
+}
+
+.input input:focus {
+    border-bottom: 2px solid crimson;
+}
+
+.input i {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+/* SECUENCIA */
+.input:nth-child(2) { animation-delay: 1.6s; }
+.input:nth-child(3) { animation-delay: 1.9s; }
+
+.check {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 20px;
+
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: 2.2s;
+}
+
+/* BOTÓN */
+.button {
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: 2.5s;
+}
+
+.button button {
+    width: 100%;
+    padding: 10px;
+    background: crimson;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button button:hover {
+    background: #ff2e55;
+    box-shadow: 0 0 15px crimson;
+    transform: scale(1.05);
+}
+
+/* SIGN UP */
+.sign-up {
+    text-align: center;
+    margin-top: 15px;
+
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: 2.8s;
+}
+
+.sign-up a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="index.html">Continuar como espectador</a>
+    </nav>
+</header>
+
+<section class="home">
+
+    <div class="content">
+        <h2>Bienvenido</h2>
+        <h3>Estas a un paso de unirte a nosotros</h3>
+        <p>Tenemos multiples opciones y cursos que te encantaran</p>
+
+    </div>
+
+    <div class="login">
+        <h2>Iniciar Sesión</h2>
+
+        <div class="input">
+            <input type="text" placeholder="Correo" required>
+            <i class="fa-solid fa-envelope"></i>
+        </div>
+
+        <div class="input">
+            <input type="password" placeholder="Contraseña" required>
+            <i class="fa-solid fa-lock"></i>
+        </div>
+
+        <div class="check">
+            <label><input type="checkbox"> Recordarme</label>
+            <a href="#">¿Olvidaste?</a>
+        </div>
+
+        <div class="button">
+            <button id="btnLogin">Ingresar</button>
+        </div>
+
+        <div class="sign-up">
+            <p>No tienes cuenta?</p>
+            <a href="#">Registrarse</a>
+        </div>
+    </div>
+
+</section>
+
+<!-- JS -->
+<script>
+document.getElementById("btnLogin").addEventListener("click", function() {
+    const inputs = document.querySelectorAll(".input input");
+
+    if(inputs[0].value === "" || inputs[1].value === ""){
+        alert("Completa los campos 😅");
+    } else {
+        window.location.href = "index.html";
+    }
+});
+</script>
+
+</body>
+</html>
