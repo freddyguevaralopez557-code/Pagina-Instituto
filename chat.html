@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chat Virtual - Instituto Técnico</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    padding-top:100px;
+}
+
+/* NAVBAR */
+
+.navbar{
+
+    width:100%;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    background:linear-gradient(135deg,#667eea,#764ba2);
+
+    padding:15px 30px;
+
+    z-index:1000;
+}
+
+.nav-container{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+}
+
+.logo h2{
+    color:white;
+}
+
+.nav-menu{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.nav-link{
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:10px 15px;
+
+    border-radius:10px;
+
+    transition:0.3s;
+}
+
+.nav-link:hover,
+.active{
+
+    background:white;
+
+    color:#667eea;
+}
+
+/* CHAT */
+
+.chat-container{
+
+    width:400px;
+    max-width:95%;
+
+    height:720px;
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
+
+    display:flex;
+    flex-direction:column;
+}
+
+/* HEADER */
+
+.chat-header{
+
+    background: linear-gradient(135deg, #667eea, #764ba2);
+
+    color:white;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.avatar{
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:28px;
+}
+
+.header-info h2{
+    font-size:20px;
+}
+
+.header-info p{
+    font-size:13px;
+    opacity:0.8;
+}
+
+/* CHAT BOX */
+
+.chat-box{
+
+    flex:1;
+
+    padding:20px;
+
+    overflow-y:auto;
+
+    background:#f5f7fb;
+}
+
+/* MENSAJES */
+
+.message{
+
+    margin-bottom:15px;
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+.bot{
+    align-items:flex-start;
+}
+
+.user{
+    align-items:flex-end;
+}
+
+.bubble{
+
+    padding:12px 16px;
+
+    border-radius:18px;
+
+    max-width:75%;
+
+    font-size:14px;
+
+    animation:fadeIn 0.3s ease;
+}
+
+.bot .bubble{
+
+    background:white;
+
+    color:#333;
+
+    border-bottom-left-radius:5px;
+}
+
+.user .bubble{
+
+    background:#667eea;
+
+    color:white;
+
+    border-bottom-right-radius:5px;
+}
+
+.time{
+
+    font-size:11px;
+
+    color:#888;
+
+    margin-top:5px;
+}
+
+/* INPUT */
+
+.chat-input{
+
+    display:flex;
+
+    padding:15px;
+
+    background:white;
+
+    border-top:1px solid #eee;
+}
+
+.chat-input input{
+
+    flex:1;
+
+    padding:14px;
+
+    border:none;
+
+    background:#f1f3f6;
+
+    border-radius:15px;
+
+    outline:none;
+
+    font-size:14px;
+}
+
+.chat-input button{
+
+    margin-left:10px;
+
+    border:none;
+
+    background:#667eea;
+
+    color:white;
+
+    padding:14px 18px;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:0.3s;
+}
+
+.chat-input button:hover{
+    background:#5a67d8;
+}
+
+/* BOTONES */
+
+.quick-buttons{
+
+    padding:10px 15px;
+
+    background:white;
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    border-top:1px solid #eee;
+}
+
+.quick-buttons button{
+
+    border:none;
+
+    background:#eef1ff;
+
+    color:#667eea;
+
+    padding:8px 12px;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    transition:0.3s;
+}
+
+.quick-buttons button:hover{
+
+    background:#667eea;
+
+    color:white;
+}
+
+/* REDES */
+
+.sociales{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:15px;
+
+    background:white;
+
+    border-top:1px solid #eee;
+
+    flex-wrap:wrap;
+}
+
+.sociales a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:12px 16px;
+
+    border-radius:15px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    color:#333;
+
+    background:#eef1ff;
+
+    transition:0.3s;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.sociales a:hover{
+
+    transform:translateY(-5px);
+
+    background:#667eea;
+
+    color:white;
+}
+
+/* ANIMACIÓN */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <div class="logo">
+            <h2>🎓 Instituto Técnico</h2>
+        </div>
+
+        <ul class="nav-menu">
+
+            <li>
+                <a href="index.html" class="nav-link">
+                    🏠 Inicio
+                </a>
+            </li>
+
+            <li>
+                <a href="productos.html" class="nav-link">
+                    🛒 Productos
+                </a>
+            </li>
+
+            <li>
+                <a href="mision.html" class="nav-link">
+                    🎯 Misión
+                </a>
+            </li>
+
+            <li>
+                <a href="vision.html" class="nav-link">
+                    🌟 Visión
+                </a>
+            </li>
+
+            <li>
+                <a href="quienes-somos.html" class="nav-link">
+                    👥 Quiénes
+                </a>
+            </li>
+
+            <li>
+                <a href="admision.html" class="nav-link">
+                    📚 Admisión
+                </a>
+            </li>
+
+            <li>
+                <a href="contacto.html" class="nav-link">
+                    📧 Contacto
+                </a>
+            </li>
+
+            <li>
+                <a href="chat.html" class="nav-link active">
+                    💬 Chat
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</nav>
+
+<!-- CHAT -->
+
+<div class="chat-container">
+
+    <!-- HEADER -->
+
+    <div class="chat-header">
+
+        <div class="avatar">🎓</div>
+
+        <div class="header-info">
+
+            <h2>Asistente Virtual</h2>
+
+            <p>En línea ahora</p>
+
+        </div>
+
+    </div>
+
+    <!-- CHAT BOX -->
+
+    <div class="chat-box" id="chatBox">
+
+    </div>
+
+    <!-- BOTONES -->
+
+    <div class="quick-buttons">
+
+        <button onclick="enviarRapido('carreras')">
+            📚 Carreras
+        </button>
+
+        <button onclick="enviarRapido('costos')">
+            💰 Costos
+        </button>
+
+        <button onclick="enviarRapido('matricula')">
+            📝 Matrícula
+        </button>
+
+        <button onclick="enviarRapido('contacto')">
+            📞 Contacto
+        </button>
+
+    </div>
+
+    <!-- REDES -->
+
+    <div class="sociales">
+
+        <a href="https://facebook.com" target="_blank">
+            📘 Facebook
+        </a>
+
+        <a href="https://instagram.com" target="_blank">
+            📸 Instagram
+        </a>
+
+        <a href="https://tiktok.com" target="_blank">
+            🎵 TikTok
+        </a>
+
+        <a href="https://youtube.com" target="_blank">
+            ▶ YouTube
+        </a>
+
+        <a href="https://wa.me/51999999999" target="_blank">
+            💬 WhatsApp
+        </a>
+
+    </div>
+
+    <!-- INPUT -->
+
+    <div class="chat-input">
+
+        <input 
+        type="text" 
+        id="mensajeInput"
+        placeholder="Escribe un mensaje...">
+
+        <button onclick="enviarMensaje()">
+            🚀
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+const chatBox = document.getElementById('chatBox');
+
+window.onload = ()=>{
+
+    agregarBot(
+    "👋 Hola, bienvenido al Instituto Técnico 😊");
+
+    setTimeout(()=>{
+
+        agregarBot(
+        "¿Deseas información sobre carreras, costos o matrícula?");
+
+    },800);
+}
+
+/* BOT */
+
+function agregarBot(texto){
+
+    const hora = obtenerHora();
+
+    chatBox.innerHTML += `
+    
+    <div class="message bot">
+
+        <div class="bubble">${texto}</div>
+
+        <div class="time">${hora}</div>
+
+    </div>
+    `;
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+/* USER */
+
+function agregarUser(texto){
+
+    const hora = obtenerHora();
+
+    chatBox.innerHTML += `
+    
+    <div class="message user">
+
+        <div class="bubble">${texto}</div>
+
+        <div class="time">${hora}</div>
+
+    </div>
+    `;
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+/* ENVIAR */
+
+function enviarMensaje(){
+
+    const input =
+    document.getElementById('mensajeInput');
+
+    const texto =
+    input.value.trim().toLowerCase();
+
+    if(texto === '') return;
+
+    agregarUser(texto);
+
+    responder(texto);
+
+    input.value = '';
+}
+
+/* BOTONES */
+
+function enviarRapido(texto){
+
+    agregarUser(texto);
+
+    responder(texto);
+}
+
+/* RESPUESTAS */
+
+function responder(texto){
+
+    let respuesta = '';
+
+    if(texto.includes('carreras')){
+
+        respuesta =
+        '📚 Tenemos Desarrollo Web Full Stack y Arquitectura de Sistemas.';
+    }
+
+    else if(texto.includes('costos')){
+
+        respuesta =
+        '💰 Las mensualidades son accesibles y contamos con becas.';
+    }
+
+    else if(texto.includes('matricula')){
+
+        respuesta =
+        '📝 Puedes matricularte desde la sección Admisión.';
+    }
+
+    else if(texto.includes('contacto')){
+
+        respuesta =
+        '📞 Puedes comunicarte al +51 999 999 999.';
+    }
+
+    else{
+
+        respuesta =
+        '🤖 Lo siento, aún estoy aprendiendo. Intenta otra consulta.';
+    }
+
+    setTimeout(()=>{
+
+        agregarBot(respuesta);
+
+    },700);
+}
+
+/* HORA */
+
+function obtenerHora(){
+
+    const ahora = new Date();
+
+    return ahora.toLocaleTimeString([], {
+        hour:'2-digit',
+        minute:'2-digit'
+    });
+}
+
+/* ENTER */
+
+document
+.getElementById('mensajeInput')
+.addEventListener('keypress', function(e){
+
+    if(e.key === 'Enter'){
+
+        enviarMensaje();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
