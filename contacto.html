@@ -4,316 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #2a2a4a 50%, #1a1a3e 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Partículas de fondo */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent);
-            background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: float 20s infinite linear;
-            opacity: 0.1;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-20px) rotate(360deg); }
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 50px 40px;
-            border-radius: 25px;
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            width: 100%;
-            max-width: 550px;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-        }
-
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
-            background-size: 300% 100%;
-            animation: gradientShift 3s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        h1 {
-            color: #2c3e50;
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
-
-        .subtitle {
-            color: #7f8c8d;
-            font-size: 16px;
-            font-weight: 300;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            color: #34495e;
-            font-weight: 500;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        textarea {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #e8ecef;
-            border-radius: 15px;
-            font-size: 16px;
-            font-family: 'Poppins', sans-serif;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            background: rgba(255, 255, 255, 1);
-            box-shadow: 
-                0 0 0 4px rgba(102, 126, 234, 0.1),
-                0 10px 30px rgba(102, 126, 234, 0.1);
-            transform: translateY(-2px);
-        }
-
-        textarea {
-            height: 140px;
-            resize: vertical;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .btn-enviar {
-            width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            color: white;
-            padding: 18px;
-            border: none;
-            border-radius: 15px;
-            font-size: 18px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-enviar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-enviar:hover::before {
-            left: 100%;
-        }
-
-        .btn-enviar:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.5);
-        }
-
-        .btn-enviar:active {
-            transform: translateY(-1px);
-        }
-
-        .mensaje {
-            margin-top: 20px;
-            padding: 15px 20px;
-            border-radius: 15px;
-            text-align: center;
-            font-weight: 500;
-            font-size: 15px;
-            display: none;
-            animation: slideIn 0.5s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .exito {
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            color: #155724;
-            border: 2px solid #c3e6cb;
-            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
-        }
-
-        .error {
-            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
-            color: #721c24;
-            border: 2px solid #f5c6cb;
-            box-shadow: 0 10px 30px rgba(220, 53, 69, 0.3);
-        }
-
-        /* Responsive */
-        @media (max-width: 480px) {
-            .container {
-                padding: 40px 25px;
-                margin: 10px;
-            }
-            
-            h1 {
-                font-size: 26px;
-            }
-        }
-    </style>
+    <!-- ARCHIVO CSS -->
+    <link rel="stylesheet" href="estilos.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📧 Contacto</h1>
-            <p class="subtitle">Déjanos tu mensaje y te responderemos pronto</p>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h2>🎓 Instituto Técnico</h2>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">🏠 Inicio</a></li>
+                <li><a href="productos.html" class="nav-link">🛒 Productos</a></li>
+                <li><a href="mision.html" class="nav-link">🎯 Misión</a></li>
+                <li><a href="vision.html" class="nav-link">🌟 Visión</a></li>
+                <li><a href="quienes-somos.html" class="nav-link">👥 Quiénes</a></li>
+                <li><a href="admision.html" class="nav-link">📚 Admisión</a></li>
+
+                <!-- ACTIVO -->
+                <li><a href="contacto.html" class="nav-link active">📧 Contacto</a></li>
+            </ul>
         </div>
-        
-        <form id="formContacto">
-            <div class="form-group">
-                <label for="nombre">👤 Nombre completo</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
+    </nav>
 
-            <div class="form-group">
-                <label for="correo">✉️ Correo electrónico</label>
-                <input type="email" id="correo" name="correo" required>
-            </div>
+    <!-- CONTENIDO -->
+    <main class="container">
 
-            <div class="form-group">
-                <label for="telefono">📱 Teléfono</label>
-                <input type="tel" id="telefono" name="telefono" required>
-            </div>
+        <section class="hero">
+            <h1 class="hero-title">
+                📧 <span class="gradient-text">Contacto</span>
+            </h1>
 
-            <div class="form-group">
-                <label for="comentario">💬 Tu mensaje</label>
-                <textarea id="comentario" name="comentario" placeholder="Cuéntanos qué necesitas... Estamos aquí para ayudarte 😊" required></textarea>
-            </div>
+            <p class="hero-subtitle">
+                Déjanos tu mensaje y te responderemos pronto
+            </p>
+        </section>
 
-            <button type="submit" class="btn-enviar">🚀 Enviar Mensaje</button>
-            
-            <div id="mensaje" class="mensaje"></div>
-        </form>
-    </div>
+        <section>
+
+            <form id="formContacto">
+
+                <div class="form-group">
+                    <label for="nombre">👤 Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">✉️ Correo electrónico</label>
+                    <input type="email" id="correo" name="correo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">📱 Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="comentario">💬 Tu mensaje</label>
+
+                    <textarea 
+                        id="comentario" 
+                        name="comentario"
+                        placeholder="Cuéntanos qué necesitas..."
+                        required>
+                    </textarea>
+                </div>
+
+                <button type="submit" class="cta-button primary">
+                    🚀 Enviar Mensaje
+                </button>
+
+                <div id="mensaje" class="mensaje"></div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2024 Instituto Técnico</p>
+    </footer>
 
     <script>
-        document.getElementById('formContacto').addEventListener('submit', function(e) {
+
+        document.getElementById('formContacto')
+        .addEventListener('submit', function(e) {
+
             e.preventDefault();
-            
+
             const nombre = document.getElementById('nombre').value;
-            const correo = document.getElementById('correo').value;
-            const telefono = document.getElementById('telefono').value;
-            const comentario = document.getElementById('comentario').value;
-            
+
             const mensaje = document.getElementById('mensaje');
-            mensaje.innerHTML = `✨ ¡Gracias <strong>${nombre}</strong>! <br> Tu mensaje ha sido enviado correctamente. <br> Te contactaremos en breve 📲`;
-            mensaje.className = 'mensaje exito';
+
+            mensaje.innerHTML =
+            `✨ ¡Gracias <strong>${nombre}</strong>!
+            <br> Tu mensaje ha sido enviado correctamente.
+            <br> Te contactaremos pronto 📲`;
+
             mensaje.style.display = 'block';
-            
+
             this.reset();
-            
+
             setTimeout(() => {
                 mensaje.style.display = 'none';
             }, 6000);
+
         });
 
-        // Efecto de escritura en labels al enfocar
-        const inputs = document.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.querySelector('label').style.color = '#667eea';
-                this.parentElement.querySelector('label').style.transform = 'translateY(-25px) scale(0.9)';
-            });
-            
-            input.addEventListener('blur', function() {
-                if (!this.value) {
-                    this.parentElement.querySelector('label').style.color = '#34495e';
-                    this.parentElement.querySelector('label').style.transform = 'translateY(0) scale(1)';
-                }
-            });
-        });
     </script>
+
 </body>
 </html>
