@@ -905,3 +905,18 @@ section {
                 font-size: 26px;
             }
         }
+
+/* LOGIN DESTACADO PERO ELEGANTE */
+.nav-login{
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+}
+
+/* conserva la animación original del nav-link */
+.nav-login:hover{
+    background: rgba(255,255,255,0.22);
+}
