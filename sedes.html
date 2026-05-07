@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sedes SENATI</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#e3f2fd,#f5f5f5);
+    min-height:100vh;
+    padding:40px;
+    overflow-x:hidden;
+}
+
+/* EFECTO BLUR */
+body.blur-activo .contenedor{
+    filter: blur(8px);
+    pointer-events:none;
+    user-select:none;
+}
+
+/* TITULO */
+h1{
+    text-align:center;
+    margin-bottom:40px;
+    color:#0d47a1;
+    font-size:40px;
+}
+
+/* BOTON */
+.btn-inicio{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
+    color: white;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: .3s;
+    z-index: 1000;
+}
+
+.btn-inicio:hover{
+    transform: scale(1.05);
+}
+
+/* GRID */
+.contenedor{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+    transition:.4s;
+}
+
+/* CARD */
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    cursor:pointer;
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+    border-top:5px solid #1565c0;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:-100%;
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.4),
+        transparent
+    );
+    transition:.6s;
+}
+
+.card:hover::before{
+    left:100%;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h2{
+    color:#0d47a1;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#555;
+}
+
+/* MODAL */
+.modal{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    width:90%;
+    max-width:700px;
+    background:white;
+    border-radius:25px;
+    padding:35px;
+    z-index:2000;
+    box-shadow:0 20px 60px rgba(0,0,0,0.4);
+    transition:.4s ease;
+}
+
+.modal.activo{
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.modal h2{
+    color:#0d47a1;
+    margin-bottom:15px;
+    font-size:35px;
+}
+
+.modal h3{
+    margin-top:20px;
+    margin-bottom:10px;
+    color:#1565c0;
+}
+
+.modal p{
+    color:#444;
+    line-height:1.6;
+}
+
+.modal ul{
+    padding-left:20px;
+}
+
+.modal li{
+    margin-bottom:8px;
+}
+
+/* BOTON CERRAR */
+.cerrar{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:28px;
+    cursor:pointer;
+    color:#444;
+    transition:.3s;
+}
+
+.cerrar:hover{
+    color:red;
+    transform:rotate(90deg);
+}
+
+/* FONDO OSCURO */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(5px);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:1500;
+}
+
+.overlay.activo{
+    opacity:1;
+    visibility:visible;
+}
+
+</style>
+</head>
+<body>
+
+<a href="index.html" class="btn-inicio">
+    ⬅ Inicio
+</a>
+
+<h1>SEDES DE SENATI</h1>
+
+<div class="contenedor">
+
+<div class="card" onclick="abrirModal('Lima','Especializada en tecnología, administración e industria.',['Ingeniería de Software','Administración Industrial','Diseño Gráfico','Mecatrónica'])">
+    <h2>SENATI Lima</h2>
+    <p>📍 Lima</p>
+</div>
+
+<div class="card" onclick="abrirModal('Chiclayo','Centro enfocado en industria y tecnologías modernas.',['Electricidad Industrial','Soporte TI','Mecánica Automotriz','Soldadura Universal'])">
+    <h2>SENATI Chiclayo</h2>
+    <p>📍 Lambayeque</p>
+</div>
+
+<div class="card" onclick="abrirModal('Trujillo','Reconocida por carreras técnicas industriales.',['Automatización Industrial','Redes y Comunicaciones','Mecánica de Producción','Diseño Web'])">
+    <h2>SENATI Trujillo</h2>
+    <p>📍 La Libertad</p>
+</div>
+
+<div class="card" onclick="abrirModal('Piura','Destacada por sus laboratorios técnicos.',['Mantenimiento Industrial','Electrónica','Administración Logística','Programación'])">
+    <h2>SENATI Piura</h2>
+    <p>📍 Piura</p>
+</div>
+
+<div class="card" onclick="abrirModal('Arequipa','Formación especializada en minería e industria.',['Minería','Mecánica Automotriz','Seguridad Industrial','Software y TI'])">
+    <h2>SENATI Arequipa</h2>
+    <p>📍 Arequipa</p>
+</div>
+
+<div class="card" onclick="abrirModal('Cusco','Centro moderno orientado al turismo y tecnología.',['Hotelería Industrial','Diseño Digital','Electricidad','Computación'])">
+    <h2>SENATI Cusco</h2>
+    <p>📍 Cusco</p>
+</div>
+
+<div class="card" onclick="abrirModal('Ica','Especializada en agroindustria y sistemas.',['Agroindustria','Desarrollo de Software','Electrotecnia','Administración'])">
+    <h2>SENATI Ica</h2>
+    <p>📍 Ica</p>
+</div>
+
+<div class="card" onclick="abrirModal('Puno','Centro orientado a producción industrial.',['Mecánica','Electricidad','Computación','Electrónica'])">
+    <h2>SENATI Puno</h2>
+    <p>📍 Puno</p>
+</div>
+
+<div class="card" onclick="abrirModal('Tacna','Alta demanda en carreras tecnológicas.',['Redes','Automotriz','Programación','Gestión Industrial'])">
+    <h2>SENATI Tacna</h2>
+    <p>📍 Tacna</p>
+</div>
+
+<div class="card" onclick="abrirModal('Huancayo','Centro de innovación industrial.',['Electrónica Industrial','Diseño Mecánico','Software','Automatización'])">
+    <h2>SENATI Huancayo</h2>
+    <p>📍 Junín</p>
+</div>
+
+<div class="card" onclick="abrirModal('Chimbote','Enfoque en industria pesquera y mecánica.',['Mecánica Naval','Electricidad','Logística','TI y Redes'])">
+    <h2>SENATI Chimbote</h2>
+    <p>📍 Áncash</p>
+</div>
+
+<div class="card" onclick="abrirModal('Cajamarca','Capacitación moderna en tecnología e industria.',['Mantenimiento de Maquinaria','Software','Electricidad Industrial','Diseño Técnico'])">
+    <h2>SENATI Cajamarca</h2>
+    <p>📍 Cajamarca</p>
+</div>
+
+</div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="cerrarModal()"></div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+
+    <span class="cerrar" onclick="cerrarModal()">✖</span>
+
+    <h2 id="titulo"></h2>
+
+    <h3>Información</h3>
+    <p id="info"></p>
+
+    <h3>Carreras</h3>
+    <ul id="carreras"></ul>
+
+</div>
+
+<script>
+
+const modal = document.getElementById("modal");
+const overlay = document.getElementById("overlay");
+
+function abrirModal(sede,info,carreras){
+
+    document.getElementById("titulo").innerText = "SENATI " + sede;
+    document.getElementById("info").innerText = info;
+
+    let lista = "";
+
+    carreras.forEach(carrera => {
+        lista += `<li>✅ ${carrera}</li>`;
+    });
+
+    document.getElementById("carreras").innerHTML = lista;
+
+    modal.classList.add("activo");
+    overlay.classList.add("activo");
+
+    document.body.classList.add("blur-activo");
+}
+
+function cerrarModal(){
+    modal.classList.remove("activo");
+    overlay.classList.remove("activo");
+
+    document.body.classList.remove("blur-activo");
+}
+
+</script>
+
+</body>
+</html>
